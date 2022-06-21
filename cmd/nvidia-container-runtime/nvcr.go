@@ -126,6 +126,7 @@ func (r nvidiaContainerRuntime) addMonitor(ctrmsg []string, spec *specs.Spec) er
 	currentbundle, _ := os.Getwd()
 	currentbundle = currentbundle + "/vgpucache/"
 	os.MkdirAll(currentbundle, os.ModePerm)
+	os.Chmod(currentbundle, 0777)
 	vgpupath := SharedPath + ctrmsg[0]
 	os.Remove(vgpupath)
 	err := os.Symlink(currentbundle, vgpupath)
